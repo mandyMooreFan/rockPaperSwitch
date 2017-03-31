@@ -1,5 +1,4 @@
 
-
 object Instruction extends Enumeration {
   val Rock, Paper, Scissors = Value
 

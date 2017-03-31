@@ -1,11 +1,10 @@
 import java.util.UUID
 
 import TheGame.Match
-import TheTournament.Bracket
+import Tournament.Seed
 
-
-case class Participant(emailAddress: String, instructions: List[Instruction.Value], record: List[Match],
-                       bracket: Bracket.Value) {
+case class Participant(emailAddress: String, instructions: Seq[Instruction.Value], seed: Seed = Seed(0),
+                       record: List[Match] = List.empty) {
 
   case class ParticipantId() {
     def apply(): UUID = UUID.randomUUID()
