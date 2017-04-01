@@ -41,7 +41,8 @@ object TheGame {
 
   def playMatch(aMatch: Match): Match = {
     val instructionMap = aMatch.player1.instructions zip aMatch.player2.instructions
-    val newResult = instructionMap.foldLeft(aMatch.games) {
+    val newResult = instructionMap
+      .foldLeft(aMatch.games) {
       case (games, (player1Instruction, player2Instruction)) =>
         games :+ playGame(player1Instruction, player2Instruction)
     }

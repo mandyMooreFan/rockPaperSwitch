@@ -7,9 +7,13 @@ class TheGameTest extends WordSpec with Matchers {
   trait Setup {
     val theGame = TheGame
 
-    val instruction1 = Seq(Instruction.Rock, Instruction.Rock, Instruction.Rock, Instruction.Rock, Instruction.Rock)
-    val instruction2 = Seq(Instruction.Paper, Instruction.Rock, Instruction.Rock, Instruction.Rock, Instruction.Rock)
-    val instruction3 = Seq(Instruction.Rock, Instruction.Rock, Instruction.Rock, Instruction.Rock, Instruction.Rock)
+    val instruction1String = "Rock,Rock,Rock,Rock,Rock"
+    val instruction2String = "Paper,Rock,Rock,Rock,Rock"
+    val instruction3String = "Rock,Rock,Rock,Rock,Rock"
+
+    val instruction1 = Instruction.formatInstructions(instruction1String)
+    val instruction2 = Instruction.formatInstructions(instruction2String)
+    val instruction3 = Instruction.formatInstructions(instruction3String)
 
     val participant1 = Participant("test@gmail.com", instruction1)
     val participant2 = Participant("test2@gmail.com", instruction2)
@@ -42,10 +46,16 @@ class TheGameTest extends WordSpec with Matchers {
             Game(Instruction.Rock, Instruction.Rock, Result.Tie),
             Game(Instruction.Rock, Instruction.Rock, Result.Tie),
             Game(Instruction.Rock, Instruction.Rock, Result.Tie),
-            Game(Instruction.Rock, Instruction.Rock, Result.Tie)
+            Game(Instruction.Rock, Instruction.Rock, Result.Tie),
+            Game(Instruction.Rock, Instruction.Paper, Result.Lose),
+            Game(Instruction.Rock, Instruction.Rock, Result.Tie),
+            Game(Instruction.Rock, Instruction.Rock, Result.Tie),
+            Game(Instruction.Rock, Instruction.Rock, Result.Tie),
+            Game(Instruction.Rock, Instruction.Rock, Result.Tie),
+            Game(Instruction.Rock, Instruction.Paper, Result.Lose)
           )))
 
-        theMatch.findResults() should equal(Results(0, 1, 4))
+        theMatch.findResults() should equal(Results(0, 3, 8))
       }
     }
   }
