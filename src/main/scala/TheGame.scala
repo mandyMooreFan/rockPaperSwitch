@@ -20,6 +20,10 @@ object TheGame {
       val ties = games.count(_.result == Result.Tie)
       Results(wins, loses, ties)
     }
+
+    def whoWon(): Participant = {
+      if(findResults.wins == 3) player1 else player2
+    }
   }
 
   def playGame(player1Instruction: Instruction.Value, player2Instruction: Instruction.Value): Game =
@@ -43,9 +47,13 @@ object TheGame {
     val instructionMap = aMatch.player1.instructions zip aMatch.player2.instructions
     val newResult = instructionMap
       .foldLeft(aMatch.games) {
-      case (games, (player1Instruction, player2Instruction)) =>
-        games :+ playGame(player1Instruction, player2Instruction)
-    }
+        case (games, (player1Instruction, player2Instruction)) =>
+          if (
+            games.count(_.result == Result.Win) == 3 || games.count(_.result == Result.Lose) == 3
+          ) games else {
+            games :+ playGame(player1Instruction, player2Instruction)
+          }
+      }
     Match(aMatch.player1, aMatch.player2, aMatch.bracket, newResult)
   }
 }

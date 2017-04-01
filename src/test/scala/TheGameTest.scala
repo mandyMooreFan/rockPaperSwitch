@@ -36,8 +36,8 @@ class TheGameTest extends WordSpec with Matchers {
       }
     }
 
-    "match" should {
-      "be able to report back the outcome for each player" in new Setup {
+    " a match" should {
+      "be able to play the match" in new Setup {
         val theMatch = theGame.playMatch(Match(participant1, participant2, Bracket.WinnersBracket))
 
         theMatch should equal(
@@ -54,8 +54,26 @@ class TheGameTest extends WordSpec with Matchers {
             Game(Instruction.Rock, Instruction.Rock, Result.Tie),
             Game(Instruction.Rock, Instruction.Paper, Result.Lose)
           )))
+      }
 
+      "be able to report the results of the match" in new Setup {
+        val theMatch = theGame.playMatch(Match(participant1, participant2, Bracket.WinnersBracket))
         theMatch.findResults() should equal(Results(0, 3, 8))
+      }
+
+      "tell you who won the match" should {
+        "know that player 2 won when 3 loses are present" in new Setup {
+          val theMatch = new Match(participant1, participant2, Bracket.WinnersBracket) {
+            override def findResults() = Results(0, 3, 8)
+          }
+          theMatch.whoWon should equal(participant2)
+        }
+        "know that player 1 won when 3 wins are present" in new Setup {
+          val theMatch = new Match(participant1, participant2, Bracket.WinnersBracket) {
+            override def findResults() = Results(3, 2, 8)
+          }
+          theMatch.whoWon should equal(participant1)
+        }
       }
     }
   }
