@@ -1,4 +1,4 @@
-import Tournament.Bracket
+import Tournament.BracketType
 
 object TheGame {
 
@@ -11,17 +11,17 @@ object TheGame {
   case class Game(player1Instruction: Instruction.Value, player2Instruction: Instruction.Value,
                   result: Result.Value = Result.NotPlayedYet)
 
-  case class Match(player1: Participant, player2: Participant, bracket: Bracket.Value,
+  case class Match(player1: Participant, player2: Participant, bracket: BracketType.Value,
                    games: List[Game] = List.empty) {
 
-    def findResults(): Results = {
+    def findResults: Results = {
       val wins = games.count(_.result == Result.Win)
       val loses = games.count(_.result == Result.Lose)
       val ties = games.count(_.result == Result.Tie)
       Results(wins, loses, ties)
     }
 
-    def whoWon(): Participant = {
+    def whoWon: Participant = {
       if(findResults.wins == 3) player1 else player2
     }
   }

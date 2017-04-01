@@ -2,9 +2,11 @@ import TheGame.Match
 
 object Tournament {
 
-  case object Bracket extends Enumeration {
+  case object BracketType extends Enumeration {
     val WinnersBracket, LosersBracket = Value
   }
+
+  case class Contestants(contestants: List[Participant])
 
   case class Seed(int: Int)
 
@@ -13,6 +15,8 @@ object Tournament {
   case class Round(roundNumber: RoundNumber, matches: List[Match])
 
   case class Rounds(rounds: List[Round])
+
+  case class Bracket()
 
   def createSeeds(participants: List[Participant]): List[Participant] = {
     val startingSeed = 1

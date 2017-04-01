@@ -1,0 +1,7 @@
+test@gmai.com;Rock,Paper,Rock,Paper,Rock
+test2@gmai.com;Rock,Paper,Rock,Paper,Rock
+test3@gmai.com;Rock,Paper,Rock,Paper,Rock
+test4@gmai.com;Rock,Paper,Rock,Paper,Rock
+test5@gmai.com;Rock,Paper,Rock,Paper,Rock
+test6@gmai.com;Rock,Paper,Rock,Paper,Rock
+test7@gmai.com;Rock,Paper,Rock,Paper,Rock
