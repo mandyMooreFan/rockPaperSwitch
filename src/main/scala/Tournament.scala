@@ -10,13 +10,11 @@ object Tournament {
 
   case class Seed(int: Int)
 
-  case class RoundNumber(int: Int)
+  case class Round(roundNumber: Int, matches: List[Match])
 
-  case class Round(roundNumber: RoundNumber, matches: List[Match])
+  case class Rounds(rounds: List[Round], bracketType: BracketType.Value)
 
-  case class Rounds(rounds: List[Round])
-
-  case class Bracket()
+  case class Bracket(participants: List[Participant], rounds: Rounds)
 
   def createSeeds(participants: List[Participant]): List[Participant] = {
     val startingSeed = 1
@@ -26,4 +24,15 @@ object Tournament {
         (seed + 1, seedList :+ Participant(participant.emailAddress, participant.instructions, Seed(seed), participant.record))
     }._2
   }
+
+  def generateBracket(participants: List[Participant]): Round = {
+    val firstRoundMatchCount = Math.ceil(participants.count(_ => true).toFloat / 2).toInt
+    println(firstRoundMatchCount)
+    val firstRoundMatches = (1 to firstRoundMatchCount).foldLeft(List(): List[Match]) {
+      (matches, matchNumber) =>
+        matches :+ Match(participants.head, participants.last, matchNumber, BracketType.WinnersBracket)
+    }
+    Round(1, firstRoundMatches)
+  }
+
 }

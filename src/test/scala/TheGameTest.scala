@@ -38,10 +38,10 @@ class TheGameTest extends WordSpec with Matchers {
 
     " a match" should {
       "be able to play the match" in new Setup {
-        val theMatch = theGame.playMatch(Match(participant1, participant2, BracketType.WinnersBracket))
+        val theMatch = theGame.playMatch(Match(participant1, participant2, 1, BracketType.WinnersBracket))
 
         theMatch should equal(
-          Match(participant1, participant2, BracketType.WinnersBracket, List(
+          Match(participant1, participant2, 1, BracketType.WinnersBracket, List(
             Game(Instruction.Rock, Instruction.Paper, Result.Lose),
             Game(Instruction.Rock, Instruction.Rock, Result.Tie),
             Game(Instruction.Rock, Instruction.Rock, Result.Tie),
@@ -57,19 +57,19 @@ class TheGameTest extends WordSpec with Matchers {
       }
 
       "be able to report the results of the match" in new Setup {
-        val theMatch = theGame.playMatch(Match(participant1, participant2, BracketType.WinnersBracket))
+        val theMatch = theGame.playMatch(Match(participant1, participant2, 1, BracketType.WinnersBracket))
         theMatch.findResults should equal(Results(0, 3, 8))
       }
 
       "tell you who won the match" should {
         "know that player 2 won when 3 loses are present" in new Setup {
-          val theMatch = new Match(participant1, participant2, BracketType.WinnersBracket) {
+          val theMatch = new Match(participant1, participant2, 1, BracketType.WinnersBracket) {
             override def findResults = Results(0, 3, 8)
           }
           theMatch.whoWon should equal(participant2)
         }
         "know that player 1 won when 3 wins are present" in new Setup {
-          val theMatch = new Match(participant1, participant2, BracketType.WinnersBracket) {
+          val theMatch = new Match(participant1, participant2, 1, BracketType.WinnersBracket) {
             override def findResults = Results(3, 2, 8)
           }
           theMatch.whoWon should equal(participant1)

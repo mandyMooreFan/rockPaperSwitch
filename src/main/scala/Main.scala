@@ -3,7 +3,6 @@ import scala.io.Source
 object Main extends App {
 
   val fileName = "test.txt"
-  println(Source.fromResource(fileName))
   val fileSemiColonSplit = Source.fromResource(fileName).getLines.toList
 
   //Create participants from file.  Semi colon splits the email from the instructions.
@@ -17,6 +16,7 @@ object Main extends App {
   }
   //Create Tournament seeds
   val seededParticipants = Tournament.createSeeds(participants)
+  val bracket = Tournament.generateBracket(seededParticipants)
 
-  println(seededParticipants)
+  println(bracket)
 }

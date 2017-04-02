@@ -11,7 +11,7 @@ object TheGame {
   case class Game(player1Instruction: Instruction.Value, player2Instruction: Instruction.Value,
                   result: Result.Value = Result.NotPlayedYet)
 
-  case class Match(player1: Participant, player2: Participant, bracket: BracketType.Value,
+  case class Match(player1: Participant, player2: Participant, matchNumber: Int, bracket: BracketType.Value,
                    games: List[Game] = List.empty) {
 
     def findResults: Results = {
@@ -22,7 +22,7 @@ object TheGame {
     }
 
     def whoWon: Participant = {
-      if(findResults.wins == 3) player1 else player2
+      if (findResults.wins == 3) player1 else player2
     }
   }
 
@@ -54,6 +54,6 @@ object TheGame {
             games :+ playGame(player1Instruction, player2Instruction)
           }
       }
-    Match(aMatch.player1, aMatch.player2, aMatch.bracket, newResult)
+    Match(aMatch.player1, aMatch.player2, aMatch.matchNumber, aMatch.bracket, newResult)
   }
 }
