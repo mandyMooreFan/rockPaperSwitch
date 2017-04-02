@@ -27,15 +27,6 @@ class TheGameTest extends WordSpec with Matchers {
       }
     }
 
-    "stalemate" should {
-      "return true if the pattern matches" in new Setup {
-        theGame.stalemate(instruction1, instruction3) should equal(true)
-      }
-      "return false if the pattern doesn't match" in new Setup {
-        theGame.stalemate(instruction1, instruction2) should equal(false)
-      }
-    }
-
     " a match" should {
       "be able to play the match" in new Setup {
         val theMatch = theGame.playMatch(Match(participant1, participant2, 1, BracketType.WinnersBracket))

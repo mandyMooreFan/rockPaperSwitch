@@ -7,9 +7,10 @@ class ParticipantTest extends WordSpec with Matchers {
   "A Participant" when {
     "created" should {
       "also create a unique identifer" in {
-        val test = Participant("testEmail", List(Instruction.Rock)).ParticipantId
+        val participant = Participant("testEmail", List(Instruction.Rock))
+        val participantId = participant.ParticipantId
 
-        test should equal(UUID.randomUUID())
+        participant.ParticipantId should equal(participantId)
       }
     }
   }

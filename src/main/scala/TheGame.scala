@@ -39,10 +39,6 @@ object TheGame {
       case (Instruction.Scissors, Instruction.Scissors) => Game(player1Instruction, player2Instruction, Result.Tie)
     }
 
-  def stalemate(player1Instructions: Seq[Instruction.Value], player2Instructions: Seq[Instruction.Value]): Boolean = {
-    player1Instructions == player2Instructions
-  }
-
   def playMatch(aMatch: Match): Match = {
     val instructionMap = aMatch.player1.instructions zip aMatch.player2.instructions
     val newResult = instructionMap
