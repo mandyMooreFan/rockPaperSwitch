@@ -9,6 +9,6 @@ object Instruction extends Enumeration {
       (theList, instruction) =>
         theList :+ Instruction.withName(instruction)
     }
-    List.concat(instructionList, instructionList, instructionList)
+    instructionList ::: instructionList ::: instructionList
   }
 }
