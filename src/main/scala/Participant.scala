@@ -6,8 +6,8 @@ import Tournament.Seed
 case class Participant(emailAddress: String, instructions: Seq[Instruction.Value], seed: Seed = Seed(0),
                        record: List[Match] = List.empty) {
 
-  case class ParticipantId() {
-    def apply(): UUID = UUID.randomUUID()
+  case class TeamName() {
+    def apply(): String = ???
   }
 
 }

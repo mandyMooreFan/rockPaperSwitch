@@ -1,8 +1,8 @@
-test@gmai.com;Rock,Paper,Rock,Paper,Rock
-test2@gmai.com;Rock,Paper,Rock,Paper,Rock
-test3@gmai.com;Rock,Paper,Rock,Paper,Rock
-test4@gmai.com;Rock,Paper,Rock,Paper,Rock
-test5@gmai.com;Rock,Paper,Rock,Paper,Rock
-test6@gmai.com;Rock,Paper,Rock,Paper,Rock
-test7@gmai.com;Rock,Paper,Rock,Paper,Rock
-test8@gmai.com;Rock,Paper,Rock,Paper,Rock
+test@gmai.com;Paper,Paper,Scissors,Rock,Paper
+test2@gmai.com;Scissors,Rock,Scissors,Paper,Paper
+test3@gmai.com;Scissors,Rock,Rock,Paper,Rock
+test4@gmai.com;Rock,Scissors,Paper,Rock,Scissors
+test5@gmai.com;Paper,Paper,Rock,Scissors,Paper
+test6@gmai.com;Scissors,Rock,Rock,Paper,Scissors
+test7@gmai.com;Scissors,Scissors,Rock,Scissors,Paper
+test9@gmai.com;Rock,Rock,Rock,Rock,Rock

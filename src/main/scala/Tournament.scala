@@ -25,14 +25,32 @@ object Tournament {
     }._2
   }
 
-  def generateBracket(participants: List[Participant]): Round = {
-    val firstRoundMatchCount = Math.ceil(participants.count(_ => true).toFloat / 2).toInt
+  def generateFirstRound(participants: List[Participant]): Round = {
+    //(n & (n - 1)) == 0
+
+    val totalParticipants = participants.count(_ => true)
+
+    val firstRoundMatchCount = Math.ceil(totalParticipants.toFloat / 2).toInt
     println(firstRoundMatchCount)
     val firstRoundMatches = (1 to firstRoundMatchCount).foldLeft(List(): List[Match]) {
       (matches, matchNumber) =>
-        matches :+ Match(participants.head, participants.last, matchNumber, BracketType.WinnersBracket)
+        matches :+ Match(participants(matchNumber - 1), participants(participants.count(_ => true) - matchNumber), matchNumber, BracketType.WinnersBracket)
     }
-    Round(1, firstRoundMatches)
+    val playedFirstFoundMatches = firstRoundMatches.map { aMatch =>
+      TheGame.playMatch(aMatch)
+    }
+    Round(1, playedFirstFoundMatches)
   }
 
+  def playIt(round: Round): Rounds = {
+    round.matches.map {
+      aMatch =>
+        if (aMatch.bracket == BracketType.WinnersBracket)
+          aMatch.findResults
+        else {
+          ???
+        }
+    }
+    ???
+  }
 }
